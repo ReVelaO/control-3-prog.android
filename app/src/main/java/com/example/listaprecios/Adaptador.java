@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolderAdaptado
         return aProductos.size();
     }
 
-    public class ViewHolderAdaptador extends RecyclerView.ViewHolder {
+    public class ViewHolderAdaptador extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tv;
         TextView tv2;
@@ -51,6 +52,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolderAdaptado
             tv2 = itemView.findViewById(R.id.idTextViewAdaptador2);
             tv3 = itemView.findViewById(R.id.idTextViewAdaptador3);
             mapButton = itemView.findViewById(R.id.idMapButton);
+            mapButton.setOnClickListener(this);
         }
 
         public void asignarDatos(Avistamiento producto) {
@@ -66,6 +68,11 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolderAdaptado
             intento.putExtra("sitelat", tv2.getText().toString());
             intento.putExtra("sitelong", tv3.getText().toString());
             v.getContext().startActivity(intento);
+        }
+
+        @Override
+        public void onClick(View view) {
+            verEnMapa(view);
         }
     }
 }
